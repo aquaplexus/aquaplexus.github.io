@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+
+<!--Design, images and code by Andi Pärn-->
+
 <html>
   <head>
     <title>AquaPlexus - home</title>
@@ -6,66 +10,67 @@
   </head>
   <script>
     var headerHeight;
-var ballSpecs;
-
-window.onresize = function(event) {
-  resize();
-};
-
-function startup(){
-  ballSpecs=[];
-  for (i=0;i<500;i+=5){
-    ballSpecs.push(Math.random()*window.innerWidth,Math.random()*window.innerHeight,Math.random()*3-1,Math.random()*3-1,Math.random()*30+10);
-  }
-  resize();
-}
-
-function paint(){
-  var ctx = document.getElementById("canvas").getContext("2d");
-  ctx.fillStyle="rgba(255,255,255,0.1)";
-  ctx.clearRect(0,0,window.innerWidth,headerHeight);
-  for (i=0;i<500;i+=5){
-    ballSpecs[i]+=ballSpecs[i+2];
-    ballSpecs[i+1]+=ballSpecs[i+3];
-    if (ballSpecs[i]<-50){
-      ballSpecs[i]=window.innerWidth+50;
+    var ballSpecs;
+    
+    window.onresize = function(event) {
+      resize();
+    };
+    
+    function startup(){
+      ballSpecs=[];
+      resize();
+      for (i=0;i<500;i+=5){
+        ballSpecs.push(Math.random()*window.innerWidth,Math.random()*headerHeight,Math.random()*3-1,Math.random()*3-1,Math.random()*30+10);
+      }
     }
-    if (ballSpecs[i]-50>window.innerWidth){
-      ballSpecs[i]=-ballSpecs[i+4];
+    
+    function paint(){
+      var ctx = document.getElementById("canvas").getContext("2d");
+      ctx.fillStyle="rgba(255,255,255,0.1)";
+      ctx.clearRect(0,0,window.innerWidth,headerHeight);
+      for (i=0;i<500;i+=5){
+        ballSpecs[i]+=ballSpecs[i+2];
+        ballSpecs[i+1]+=ballSpecs[i+3];
+        if (ballSpecs[i]<-50){
+          ballSpecs[i]=window.innerWidth+50;
+        }
+        if (ballSpecs[i]-50>window.innerWidth){
+          ballSpecs[i]=-ballSpecs[i+4];
+        }
+        if (ballSpecs[i+1]<-50){
+          ballSpecs[i+1]=headerHeight+50;
+        }
+        if (ballSpecs[i+1]-50>headerHeight){
+          ballSpecs[i+1]=-ballSpecs[i+4];
+        }
+        ctx.beginPath();
+        ctx.arc(ballSpecs[i],ballSpecs[i+1],ballSpecs[i+4],0,2*Math.PI);
+        ctx.fill();
+      }
     }
-    if (ballSpecs[i+1]<-50){
-      ballSpecs[i+1]=headerHeight+50;
+    setInterval(paint,75);
+    
+    function resize(){
+      headerHeight=window.innerHeight/2;
+      if (headerHeight>150){headerHeight=150;}
+      document.getElementById("canvas").height=headerHeight;
+      document.getElementById("canvas").width=window.innerWidth;
+      document.getElementById("header").style.height=""+headerHeight+"px";
+      document.getElementById("logo").style.height=""+headerHeight*0.8+"px";
+      document.getElementById("logo").style.width=""+headerHeight*0.8+"px";
+      document.getElementById("logo").style.left=""+headerHeight/8+"px";
+      document.getElementById("logo").style.top=""+headerHeight/10+"px";
+      document.getElementById("container").style.top=""+(headerHeight+30)+"px";
+      document.getElementById("title").style.fontSize=""+headerHeight/3+"px";
+      document.getElementById("title").style.top=""+(headerHeight/6+headerHeight/8)+"px";
+      //document.getElementById("pic1").style.height=""+(window.innerWidth*0.28*9/16)+"px";
+      var topVal=window.innerWidth*0.28*9/16-15;
+      document.getElementById("desc1").style.top=""+topVal+"px";
+      document.getElementById("desc2").style.top=""+topVal+"px";
+      document.getElementById("desc3").style.top=""+topVal+"px";
     }
-    if (ballSpecs[i+1]-50>headerHeight){
-      ballSpecs[i+1]=-ballSpecs[i+4];
-    }
-    ctx.beginPath();
-    ctx.arc(ballSpecs[i],ballSpecs[i+1],ballSpecs[i+4],0,2*Math.PI);
-    ctx.fill();
-  }
-}
-setInterval(paint,75);
-
-function resize(){
-  headerHeight=window.innerHeight/2;
-  if (headerHeight>150){headerHeight=150;}
-  document.getElementById("canvas").height=headerHeight;
-  document.getElementById("canvas").width=window.innerWidth;
-  document.getElementById("header").style.height=""+headerHeight+"px";
-  document.getElementById("logo").style.height=""+headerHeight*0.8+"px";
-  document.getElementById("logo").style.width=""+headerHeight*0.8+"px";
-  document.getElementById("logo").style.left=""+headerHeight/8+"px";
-  document.getElementById("logo").style.top=""+headerHeight/10+"px";
-  document.getElementById("container").style.top=""+(headerHeight+30)+"px";
-  document.getElementById("title").style.fontSize=""+headerHeight/3+"px";
-  document.getElementById("title").style.top=""+(headerHeight/6+headerHeight/8)+"px";
-  //document.getElementById("pic1").style.height=""+(window.innerWidth*0.28*9/16)+"px";
-  var topVal=window.innerWidth*0.28*9/16-15;
-  document.getElementById("desc1").style.top=""+topVal+"px";
-  document.getElementById("desc2").style.top=""+topVal+"px";
-  document.getElementById("desc3").style.top=""+topVal+"px";
-}
   </script>
+  
   <body onload=startup()>
     <header id="header">
       <canvas id="canvas"></canvas>
