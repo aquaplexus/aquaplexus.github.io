@@ -1,0 +1,135 @@
+@import url(https://fonts.googleapis.com/css?family=Khula:300,700);
+
+body{
+  background-color:#94caf9;
+  overflow-x:hidden;
+}
+
+container{
+  width:100%;
+  display:block;
+  position:absolute;
+  top:180px;
+}
+
+#showcase{
+  display:block;
+  position:relative;
+  width:28%;
+  height:700px;
+  background-color:#dff0ff;
+  border-radius:10px;
+  margin-right:3%;
+  margin-bottom:100px;
+  left:5%;
+  top:10px;
+  float:left;
+  z-index:-10;
+  overflow:hidden;
+  box-shadow:5px 5px 10px rgba(0,0,0,0.2); 
+}
+
+h1{
+  position:relative;
+  text-align:center;
+  font-family:Khula;
+  font-size:3vw;
+  color:#444;
+}
+
+p{
+  margin-top:-20px;
+}
+
+pic{
+  position:absolute;
+  display:block;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-size:contain;
+  background-repeat:no-repeat;
+}
+
+desc{
+  display:block;
+  position:relative;
+  left:5%;
+  width:90%;
+  font-family:Khula;
+  font-size:1.2vw;
+}
+
+inset{
+  position:relative;
+  display:block;
+  top:5%;
+  left:5%;
+  width:90%;
+  height:90%;
+  background-size:contain;
+  background-repeat:no-repeat;
+  margin-top:-10%;
+}
+
+header{
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  background-color:#488cc7;
+  border-bottom:5px solid #24659d;
+}
+
+canvas{
+  border:1px dashed black;
+}
+
+logo a{
+  position:absolute;
+  display:block;
+  background-image:url("https://www.dropbox.com/s/qhgdcmhagtmqrf3/AquaPlexusLogo.png?raw=1");
+  background-size:contain;
+  width:100px;
+  background-repeat:no-repeat;
+  top:5%;
+  left:5px;
+}
+
+logo a:hover{
+  background-image:url(https://www.dropbox.com/s/rmaa87hc9nmax5r/AquaPlexusLogoHover.png?raw=1);
+}
+
+pgTitle{
+  position:absolute;
+  width:800px;
+  left:50%;
+  margin-left:-400px;
+  text-align:center;
+  font-family:Khula;
+  color:#eee;
+  text-shadow:5px 5px 5px rgba(0,0,0,0.1);
+}
+
+pgTitle::selection,tb::selection{
+  background-color:transparent;
+}
+
+tb{
+  font-family:Khula;
+  font-weight:700;
+}
+
+credits{
+  position:absolute;
+  display:block;
+  width:2000px;
+  left:50%;
+  bottom:0%;
+  margin-left:-1000px;
+  font-family:Khula;
+  font-size:20px;
+  color:black;
+}
