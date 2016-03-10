@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <title>AquaPlexus - home</title>
+    <link rel="stylesheet" type="text/css" href="index.css" media="screen" />
+  </head>
+  <script>
+    var headerHeight;
+var ballSpecs;
+
+window.onresize = function(event) {
+  resize();
+};
+
+function startup(){
+  ballSpecs=[];
+  for (i=0;i<300;i+=3){
+    ballSpecs.push(Math.random);
+  }
+  resize();
+}
+
+function resize(){
+  headerHeight=window.innerHeight/2;
+  if (headerHeight>150){headerHeight=150;}
+  document.getElementById("canvas").height=headerHeight;
+  document.getElementById("canvas").width=window.innerWidth;
+  document.getElementById("header").style.height=""+headerHeight+"px";
+  document.getElementById("logo").style.height=""+headerHeight*0.8+"px";
+  document.getElementById("logo").style.width=""+headerHeight*0.8+"px";
+  document.getElementById("logo").style.left=""+headerHeight/8+"px";
+  document.getElementById("logo").style.top=""+headerHeight/10+"px";
+  document.getElementById("container").style.top=""+(headerHeight+30)+"px";
+  document.getElementById("title").style.fontSize=""+headerHeight/3+"px";
+  document.getElementById("title").style.top=""+(headerHeight/6+headerHeight/8)+"px";
+  //document.getElementById("pic1").style.height=""+(window.innerWidth*0.28*9/16)+"px";
+  var topVal=window.innerWidth*0.28*9/16-15;
+  document.getElementById("desc1").style.top=""+topVal+"px";
+  document.getElementById("desc2").style.top=""+topVal+"px";
+  document.getElementById("desc3").style.top=""+topVal+"px";
+}
+  </script>
+  <body onload=resize()>
+    <header id="header">
+      <canvas id="canvas"></canvas>
+      <pgTitle id="title"><tb>Aqua</tb>Plexus home</pgTitle>
+      <logo>
+        <a id="logo" href="http://aquaplexus.github.io/" title="AquaPlexus home"></a>
+      </logo>
+    </header>
+    <container id="container">
+      <div id="showcase">
+        <pic id="pic1" style="background-image:url(https://www.dropbox.com/s/pfuiq092vrmjkup/choose1.png?raw=1)"></pic>
+        <!--<inset id="in1">
+        </inset>-->
+        <desc id="desc1">
+          <h1>Web simulations</h1>
+          <p>Two simulation programs were written for this project to observe the chaotic nature of life itself: 'AquaPlexus', a continuation of Craig Reynold's 'Boids' and 'Game of Life', based on John Conway's Game of Life.<br><br>Unfortunately, these are bulky Java programs that require downloading to view them. Therefore two web-based versions were written in JavaScript to give easy access to these programs.</p>
+        </desc>
+      </div>
+      <div id="showcase">
+        <pic id="pic1" style="background-image:url(https://www.dropbox.com/s/xvpfaelxcvb9yg5/choose2.png?raw=1)"></pic>
+        <!--<inset id="in1">
+        </inset>-->
+        <desc id="desc2">
+          <h1>Scientific paper</h1>
+          <p>This project started as a graduation project, so naturally there is a paper on the subject which explains the background, function, and applications of computer simulations.<br><br>Enclosed is a .pdf with the entire project, including infographics.</p>
+        </desc>
+      </div>
+      <div id="showcase">
+        <pic id="pic1" style="background-image:url(https://www.dropbox.com/s/by5qg5yqglgmqib/choose3.png?raw=1)"></pic>
+        <!--<inset id="in1">
+        </inset>-->
+        <desc id="desc3">
+          <h1>Downloads</h1>
+          <p>This project started as a graduation project, so naturally there is a paper on the subject which explains the background, function, and applications of computer simulations.<br><br>Enclosed is a .pdf with the entire project, including infographics.</p>
+        </desc>
+      </div>
+    </container>
+    <credits>lol</credits>
+  </body>
+</html>
