@@ -90,7 +90,7 @@ canvas{
 logo a{
   position:absolute;
   display:block;
-  background-image:url("https://www.dropbox.com/s/qhgdcmhagtmqrf3/AquaPlexusLogo.png?raw=1");
+  background-image:url(AquaPlexusLogo.png);
   background-size:contain;
   width:100px;
   background-repeat:no-repeat;
@@ -99,7 +99,7 @@ logo a{
 }
 
 logo a:hover{
-  background-image:url(https://www.dropbox.com/s/rmaa87hc9nmax5r/AquaPlexusLogoHover.png?raw=1);
+  background-image:url(AquaPlexusLogoHover.png);
 }
 
 pgTitle{
