@@ -51,7 +51,7 @@ linkOverlay,linkOverlay a{
 h1{
   position:relative;
   text-align:center;
-  font-family:Khula,Arial,sans-serif;
+  font-family:Khula;
   font-size:3vw;
   color:#444;
 }
@@ -127,7 +127,7 @@ pgTitle{
   left:50%;
   margin-left:-400px;
   text-align:center;
-  font-family:Khula,Arial,sans-serif;
+  font-family:Khula;
   color:#eee;
   text-shadow:5px 5px 5px rgba(0,0,0,0.1);
 }
@@ -137,7 +137,7 @@ pgTitle::selection,tb::selection{
 }
 
 tb{
-  font-family:Khula,Arial,sans-serif;
+  font-family:Khula;
   font-weight:700;
 }
 
@@ -148,7 +148,7 @@ credits{
   left:50%;
   bottom:0%;
   margin-left:-1000px;
-  font-family:Khula,Arial,sans-serif;
+  font-family:Khula;
   font-size:20px;
   color:black;
 }
