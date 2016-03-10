@@ -3,6 +3,7 @@
 body{
   background-color:#94caf9;
   overflow-x:hidden;
+  pointer-events:none;
 }
 
 container{
@@ -115,6 +116,7 @@ logo a{
   background-repeat:no-repeat;
   top:5%;
   left:5px;
+  pointer-events:auto;
 }
 
 logo a:hover{
