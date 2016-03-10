@@ -103,10 +103,6 @@ header{
   border-bottom:5px solid #24659d;
 }
 
-canvas{
-  border:1px dashed black;
-}
-
 logo a{
   position:absolute;
   display:block;
