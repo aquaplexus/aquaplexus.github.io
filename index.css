@@ -101,6 +101,9 @@ header{
   width:100%;
   background-color:#488cc7;
   border-bottom:5px solid #24659d;
+}
+
+canvas{
   -webkit-filter:blur(3px);
   -moz-filter:blur(3px);
 }
