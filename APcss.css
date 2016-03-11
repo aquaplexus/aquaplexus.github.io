@@ -33,6 +33,7 @@ container{
 
 linkOverlay{
   pointer-events:none;
+  transition:300ms;
 }
 
 linkOverlay a{
@@ -41,6 +42,7 @@ linkOverlay a{
 
 linkOverlay:hover{
   background-color:rgba(255,255,255,0.25);
+  transition:300ms;
 }
 
 linkOverlay,linkOverlay a{
