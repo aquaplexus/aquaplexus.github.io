@@ -13,11 +13,11 @@ container{
   pointer-events:none;
 }
 
-#showcase{
+#showcase,#showcase2,#showcase3{
   display:block;
   position:relative;
   width:28%;
-  height:700px;
+  min-height:100px;
   background-color:#dff0ff;
   border-radius:10px;
   margin-right:3%;
