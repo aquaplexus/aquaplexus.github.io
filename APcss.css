@@ -40,7 +40,7 @@ linkOverlay a{
 }
 
 linkOverlay:hover{
-  background-color:rgba(0,0,0,0.1);
+  background-color:rgba(255,255,255,0.1);
 }
 
 linkOverlay,linkOverlay a{
@@ -51,6 +51,7 @@ linkOverlay,linkOverlay a{
   width:100%;
   height:100%;
   border-radius:10px;
+  z-index:100;
 }
 
 h1{
