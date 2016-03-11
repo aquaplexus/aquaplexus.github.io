@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<!--Design, images and code by Andi Pärn-->
+
+<html>
+  <head>
+    <title>AquaPlexus - downloads</title>
+    <link rel="stylesheet" type="text/css" href="APcss.css" media="screen" />
+    <link rel="icon" href="icon.png">
+  </head>
+  <script>
+    var headerHeight;
+    var ballSpecs;
+    
+    window.onresize = function(event) {
+      resize();
+    };
+    
+    function startup(){
+      ballSpecs=[];
+      resize();
+      for (i=0;i<500;i+=5){
+        ballSpecs.push(Math.random()*window.innerWidth,Math.random()*headerHeight,Math.random()*3-1,Math.random()*3-1,Math.random()*30+10);
+      }
+    }
+    
+    function paint(){
+      var ctx = document.getElementById("canvas").getContext("2d");
+      ctx.fillStyle="rgba(255,255,255,0.1)";
+      ctx.clearRect(0,0,window.innerWidth,headerHeight);
+      for (i=0;i<500;i+=5){
+        ballSpecs[i]+=ballSpecs[i+2];
+        ballSpecs[i+1]+=ballSpecs[i+3];
+        if (ballSpecs[i]<-50){
+          ballSpecs[i]=window.innerWidth+50;
+        }
+        if (ballSpecs[i]-50>window.innerWidth){
+          ballSpecs[i]=-ballSpecs[i+4];
+        }
+        if (ballSpecs[i+1]<-50){
+          ballSpecs[i+1]=headerHeight+50;
+        }
+        if (ballSpecs[i+1]-50>headerHeight){
+          ballSpecs[i+1]=-ballSpecs[i+4];
+        }
+        ctx.beginPath();
+        ctx.arc(ballSpecs[i],ballSpecs[i+1],ballSpecs[i+4],0,2*Math.PI);
+        ctx.fill();
+      }
+    }
+    setInterval(paint,75);
+    
+    function resize(){
+      headerHeight=window.innerHeight/2;
+      if (headerHeight>150){headerHeight=150;}
+      document.getElementById("canvas").height=headerHeight;
+      document.getElementById("canvas").width=window.innerWidth;
+      document.getElementById("header").style.height=""+headerHeight+"px";
+      document.getElementById("logo").style.height=""+headerHeight*0.8+"px";
+      document.getElementById("logo").style.width=""+headerHeight*0.8+"px";
+      document.getElementById("logo").style.left=""+headerHeight/8+"px";
+      document.getElementById("logo").style.top=""+headerHeight/10+"px";
+      document.getElementById("container").style.top=""+(headerHeight+60)+"px";
+      document.getElementById("title").style.fontSize=""+headerHeight/3+"px";
+      document.getElementById("title").style.top=""+(headerHeight/6+headerHeight/8)+"px";
+      document.getElementById("content").style.height=""+window.innerWidth*0.35+"px";
+      document.getElementById("content2").style.height=""+window.innerWidth*0.35+"px";
+    }
+  </script>
+  
+  <style>
+    #content,#content2{
+      position: relative;
+      display: block;
+      width: 35%;
+      height: 50%;
+      left: 10%;
+      margin-right: 10%;
+      background-size: contain;
+      margin-bottom: 60px;
+      float: left;
+      border-radius:10px;
+      box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+    }
+  </style>
+  
+  <body onload=startup()>
+    <header id="header" style="background-color:#00D02C">
+      <canvas id="canvas"></canvas>
+      <pgTitle id="title"><tb>Aqua</tb>Plexus simulations</pgTitle>
+      <logo>
+        <a id="logo" href="http://aquaplexus.github.io/" title="AquaPlexus home"></a>
+      </logo>
+    </header>
+    <container id="container">
+      <div id="content" style="background-image:url(AqSim.png)">
+        <linkOverlay>
+          <a href="http://aquaplexus.github.io/fishSim"></a>
+        </linkOverlay>
+      </div>
+      <div id="content2" style="background-image:url(GoLSmall.png)">
+        <linkOverlay>
+          <a href="http://aquaplexus.github.io/gameoflife"></a>
+        </linkOverlay>
+      </div>
+    </container>
+  </body>
+</html>
