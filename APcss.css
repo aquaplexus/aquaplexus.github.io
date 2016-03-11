@@ -39,8 +39,8 @@ linkOverlay a{
   pointer-events:auto;
 }
 
-linkOverlay a:hover{
-  background-color:rgba(0,0,0,0.2);
+linkOverlay:hover{
+  background-color:rgba(0,0,0,0.1);
 }
 
 linkOverlay,linkOverlay a{
