@@ -125,7 +125,7 @@ logo a{
 }
 
 logo a:hover{
-  background-image:url(AquaPlexusLogoHover.png);
+  opacity:0.8;
 }
 
 pgTitle{
