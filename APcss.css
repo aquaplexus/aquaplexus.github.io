@@ -110,6 +110,7 @@ header{
 canvas{
   -webkit-filter:blur(2px);
   -moz-filter:blur(2px);
+  max-width:100%;
 }
 
 logo a{
