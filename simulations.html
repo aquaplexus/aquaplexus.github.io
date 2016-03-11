@@ -63,17 +63,22 @@
       document.getElementById("container").style.top=""+(headerHeight+30)+"px";
       document.getElementById("title").style.fontSize=""+headerHeight/3+"px";
       document.getElementById("title").style.top=""+(headerHeight/6+headerHeight/8)+"px";
+      document.getElementById("content").style.height=""+window.innerWidth*0.35+"px";
+      document.getElementById("content2").style.height=""+window.innerWidth*0.35+"px";
     }
   </script>
   
   <style>
-    #content{
-      width:35%;
-      height:auto;
-      left:10%;
-      margin-right:10%;
-      background-size:contain;
-      margin-bottom:200px;
+    #content,#content2{
+      position: relative;
+      display: block;
+      width: 35%;
+      height: 50%;
+      left: 10%;
+      margin-right: 10%;
+      background-size: contain;
+      margin-bottom: 200px;
+      float: left;
     }
   </style>
   
@@ -87,7 +92,7 @@
     </header>
     <container id="container">
       <div id="content" style="background-image:url(AqSim.png)"></div>
-      <div id="content" style="background-image:url(GoLSmall.png)"></div>
+      <div id="content2" style="background-image:url(GoLSmall.png)"></div>
     </container>
   </body>
 </html>
