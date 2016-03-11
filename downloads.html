@@ -80,6 +80,16 @@
       background-color:white;
       box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
     }
+    #inset{
+      position:absolute;
+      display:block;
+      width:90%;
+      height:90%;
+      top:5%;
+      left:5%;
+      font-family:Trebuchet MS;
+      color:#333;
+    }
   </style>
   
   <body onload=startup()>
@@ -91,10 +101,11 @@
       </logo>
     </header>
     <container id="container">
-      <div id="content" style="background-image:url(AqSim.png)">
-        <linkOverlay>
-          <a href="http://aquaplexus.github.io/fishSim"></a>
-        </linkOverlay>
+      <div id="content">
+        <inset id="inset">
+          <h1>Source code</h1>
+          <p>AquaPlexus:</p>
+        </inset>
       </div>
     </container>
   </body>
