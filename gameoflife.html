@@ -112,7 +112,6 @@
   var thread=setInterval(simulate,refreshRate);
   var fullRefresh,population=0,generation=0;
   var ballSpecs;
-  setInterval(paint,75);
   
   function init(){
     restart();
@@ -122,6 +121,7 @@
     for (i=0;i<500;i+=5){
       ballSpecs.push(Math.random()*window.innerWidth,Math.random()*window.innerHeight,Math.random()*3-1,Math.random()*3-1,Math.random()*30+10);
     }
+    setInterval(paint,75);
   }
   
   window.onresize = function(event) {
