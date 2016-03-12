@@ -116,16 +116,16 @@
   function init(){
     restart();
     refresh();
-    /*ballSpecs=[];
+    ballSpecs=[];
     resize();
     for (i=0;i<500;i+=5){
       ballSpecs.push(Math.random()*window.innerWidth,Math.random()*window.innerHeight,Math.random()*3-1,Math.random()*3-1,Math.random()*30+10);
-    }*/
+    }
   }
   
   window.onresize = function(event) {
     refresh();
-    //resize();
+    resize();
   };
   
   function refresh(){
@@ -353,9 +353,9 @@
     }
   }
     
-    /*
+    
       function paint2(){
-      var ctx = document.getElementById("canvas").getContext("2d");
+      var ctx = document.getElementById("backCanvas").getContext("2d");
       ctx.fillStyle="rgba(255,255,255,0.1)";
       ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
       for (i=0;i<500;i+=5){
@@ -384,7 +384,7 @@
       document.getElementById("backCanvas").height=window.innerHeight;
       document.getElementById("backCanvas").width=window.innerWidth;
     }
-    */
+    
   </script>
   
   
