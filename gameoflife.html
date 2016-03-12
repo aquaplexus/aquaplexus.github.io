@@ -111,10 +111,17 @@
   var play=0;
   var thread=setInterval(simulate,refreshRate);
   var fullRefresh,population=0,generation=0;
+  var ballSpecs;
+  setInterval(paint,75);
   
   function init(){
     restart();
     refresh();
+    ballSpecs=[];
+    resize();
+    for (i=0;i<500;i+=5){
+      ballSpecs.push(Math.random()*window.innerWidth,Math.random()*window.innerHeight,Math.random()*3-1,Math.random()*3-1,Math.random()*30+10);
+    }
   }
   
   window.onresize = function(event) {
@@ -345,10 +352,45 @@
       count1++;
     }
   }
+    
+    window.onresize = function(event) {
+      resize();
+    };
+    
+    function paint(){
+      var ctx = document.getElementById("canvas").getContext("2d");
+      ctx.fillStyle="rgba(255,255,255,0.1)";
+      ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+      for (i=0;i<500;i+=5){
+        ballSpecs[i]+=ballSpecs[i+2];
+        ballSpecs[i+1]+=ballSpecs[i+3];
+        if (ballSpecs[i]<-50){
+          ballSpecs[i]=window.innerWidth+50;
+        }
+        if (ballSpecs[i]-50>window.innerWidth){
+          ballSpecs[i]=-ballSpecs[i+4];
+        }
+        if (ballSpecs[i+1]<-50){
+          ballSpecs[i+1]=window.innerHeight+50;
+        }
+        if (ballSpecs[i+1]-50>window.innerHeight){
+          ballSpecs[i+1]=-ballSpecs[i+4];
+        }
+        ctx.beginPath();
+        ctx.arc(ballSpecs[i],ballSpecs[i+1],ballSpecs[i+4],0,2*Math.PI);
+        ctx.fill();
+      }
+    }
+    
+    function resize(){
+      document.getElementById("backCanvas").height=window.innerHeight;
+      document.getElementById("backCanvas").width=window.innerWidth;
+    }
   </script>
   
   
   <body id="body" style="background-color:#94caf9" onload=init()>
+    <canvas id="backCanvas"></canvas>
     <gameBoard id="board">
       <canvas id="canvas" draggable="true" ondrag=select(event,1) onmousedown=select(event,0) style="cursor:default !important"></canvas>
     </gameBoard>
