@@ -235,6 +235,14 @@
     document.getElementById("sPnl").style.display="block";
     fullRefresh=0;
     document.getElementById("btn2").innerHTML="save";
+    setDefault();
+  }
+
+  function setDefault(){
+    document.getElementById("input").value=sideSq*2;
+    document.getElementById("input2").value=sideSq;
+    document.getElementById("input3").value=border;
+    document.getElementById("input4").value=1000/refreshRate;
   }
   
   function save(){
