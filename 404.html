@@ -1,0 +1,67 @@
+<html style="overflow:hidden">
+  <head>
+    <title>AquaPlexus - 404</title>
+    <link rel="icon" href="icon.png">
+  </head>
+  <style>
+    #backCanvas{
+      position: fixed;
+      top:0%;
+      left:0%;
+      -webkit-filter:blur(2px);
+      -moz-filter:blur(2px);
+    }
+  </style>
+  
+  <script>
+  var ballSpecs;
+  
+  function init(){
+    ballSpecs=[];
+    resize();
+    for (i=0;i<500;i+=5){
+      ballSpecs.push(Math.random()*window.innerWidth,Math.random()*window.innerHeight,Math.random()*3-1,Math.random()*3-1,Math.random()*30+10);
+    }
+  }
+  
+  window.onresize = function(event) {
+    resize();
+  };
+    
+      function paint2(){
+      var ctx = document.getElementById("backCanvas").getContext("2d");
+      ctx.fillStyle="rgba(255,255,255,0.1)";
+      ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+      for (i=0;i<500;i+=5){
+        ballSpecs[i]+=ballSpecs[i+2];
+        ballSpecs[i+1]+=ballSpecs[i+3];
+        if (ballSpecs[i]<-50){
+          ballSpecs[i]=window.innerWidth+50;
+        }
+        if (ballSpecs[i]-50>window.innerWidth){
+          ballSpecs[i]=-ballSpecs[i+4];
+        }
+        if (ballSpecs[i+1]<-50){
+          ballSpecs[i+1]=window.innerHeight+50;
+        }
+        if (ballSpecs[i+1]-50>window.innerHeight){
+          ballSpecs[i+1]=-ballSpecs[i+4];
+        }
+        ctx.beginPath();
+        ctx.arc(ballSpecs[i],ballSpecs[i+1],ballSpecs[i+4],0,2*Math.PI);
+        ctx.fill();
+      }
+    }
+    setInterval(paint2,75);
+    
+    function resize(){
+      document.getElementById("backCanvas").height=window.innerHeight;
+      document.getElementById("backCanvas").width=window.innerWidth;
+    }
+    
+  </script>
+  
+  <body id="body" style="background-color:#94caf9" onload=init()>
+    <canvas id="backCanvas"></canvas>
+  </body>
+</html>
