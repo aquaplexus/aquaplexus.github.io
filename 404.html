@@ -18,9 +18,6 @@
       left:inherit;
       width:inherit;
       height:inherit;
-      background-image:url(404Fish.png);
-      background-size:contain;
-      animation:rotate 5s linear infinite;
     }
     @keyframes rotate{
       to{transform:rotate(360deg);}
@@ -87,7 +84,8 @@
   <body id="body" style="background-color:#94caf9" onload=init()>
     <canvas id="backCanvas"></canvas>
     <container id="container">
-      <fishSchool id="school" style="position:fixed; display:block;"></fishSchool>
+      <div id="school" style="background-image:url(404Fish.png); background-size:contain; animation:rotate 50s linear infinite;"></div>
+      <div id="school" style="background-image:url(404Fish2.png); background-size:contain; animation:rotate 60s linear infinite;"></div>
     </container>
   </body>
 </html>
