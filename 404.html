@@ -19,6 +19,12 @@
       width:inherit;
       height:inherit;
     }
+    #container{
+      display:block;
+      position:fixed
+      background-image:url(404Main);
+      background-size:contain;
+    }
     @keyframes rotate{
       to{transform:rotate(360deg);}
     }
@@ -83,7 +89,7 @@
   
   <body id="body" style="background-color:#94caf9" onload=init()>
     <canvas id="backCanvas"></canvas>
-    <container id="container" style="display:block; position:fixed">
+    <container id="container">
       <div id="school" style="background-image:url(404Fish.png); background-size:contain; animation:rotate 60s linear infinite;"></div>
       <div id="school" style="background-image:url(404Fish2.png); background-size:contain; animation:rotate 30s linear infinite;"></div>
     </container>
