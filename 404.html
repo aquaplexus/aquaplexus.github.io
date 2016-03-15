@@ -14,6 +14,10 @@
     #school{
       position:fixed;
       display:block;
+      top:inherit;
+      left:inherit;
+      width:inherit;
+      height:inherit;
       background-image:url(404Fish.png);
       background-size:contain;
       animation:rotate 5s linear infinite;
@@ -72,16 +76,18 @@
       }
       document.getElementById("backCanvas").height=window.innerHeight;
       document.getElementById("backCanvas").width=window.innerWidth;
-      document.getElementById("school").style.top=(window.innerHeight-sqSize)/2;
-      document.getElementById("school").style.left=(window.innerWidth-sqSize)/2;
-      document.getElementById("school").style.width=sqSize;
-      document.getElementById("school").style.height=sqSize;
+      document.getElementById("container").style.top=(window.innerHeight-sqSize)/2;
+      document.getElementById("container").style.left=(window.innerWidth-sqSize)/2;
+      document.getElementById("container").style.width=sqSize;
+      document.getElementById("container").style.height=sqSize;
     }
     
   </script>
   
   <body id="body" style="background-color:#94caf9" onload=init()>
     <canvas id="backCanvas"></canvas>
-    <fishSchool id="school"></fishSchool>
+    <container id="container">
+      <fishSchool id="school" style="position:fixed; display:block;"></fishSchool>
+    </container>
   </body>
 </html>
