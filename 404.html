@@ -11,10 +11,16 @@
       -webkit-filter:blur(2px);
       -moz-filter:blur(2px);
     }
+    #school{
+      position:fixed;
+      display:block;
+      background-image:url(404Fish.png);
+      background-size:contain;
+    }
   </style>
   
   <script>
-  var ballSpecs;
+  var ballSpecs,sqSize;
   
   function init(){
     ballSpecs=[];
@@ -55,13 +61,23 @@
     setInterval(paint2,75);
     
     function resize(){
+      if (window.innerWidth>window.innerHeight){
+        sqSize=(window.innerHeight*0.6)/Math.sqrt(2);
+      }else{
+        sqSize=(window.innerWidth*0.6)/Math.sqrt(2);
+      }
       document.getElementById("backCanvas").height=window.innerHeight;
       document.getElementById("backCanvas").width=window.innerWidth;
+      document.getElementById("school").style.top=(window.innerHeight-sqSize)/2;
+      document.getElementById("school").style.left=(window.innerWidth-sqSize)/2;
+      document.getElementById("school").style.width=sqSize;
+      document.getElementById("school").style.height=sqSize;
     }
     
   </script>
   
   <body id="body" style="background-color:#94caf9" onload=init()>
     <canvas id="backCanvas"></canvas>
+    <fishSchool id="school"></fishSchool>
   </body>
 </html>
