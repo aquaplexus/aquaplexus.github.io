@@ -44,7 +44,7 @@ linkOverlay:hover{
   transition:300ms;
 }
 
-linkOverlay:hover{
+linkOverlay2:hover{
   background-color:rgba(255,255,255,0.7);
   transition:300ms;
   color:#444;
@@ -72,12 +72,13 @@ linkOverlay2,linkOverlay2 a{
   z-index:100;
   color:transparent;
   font-family:Khula,Trebuchet MS,sans-serif;
+  text-align:center;
 }
 
 h1{
   position:relative;
   text-align:center;
-  font-family:Khula;
+  font-family:Khula,Trebuchet MS,sans-serif;
   font-size:3vw;
   color:#444;
 }
@@ -102,7 +103,7 @@ desc{
   position:relative;
   left:5%;
   width:90%;
-  font-family:Khula;
+  font-family:Khula,Trebuchet MS,sans-serif;
   font-size:1.2vw;
 }
 
@@ -164,7 +165,7 @@ pgTitle::selection,tb::selection{
 }
 
 tb{
-  font-family:Khula;
+  font-family:Khula,Trebuchet MS,sans-serif;
   font-weight:700;
 }
 
@@ -175,7 +176,7 @@ credits{
   left:50%;
   bottom:0%;
   margin-left:-1000px;
-  font-family:Khula;
+  font-family:Khula,Trebuchet MS,sans-serif;
   font-size:20px;
   color:black;
 }
