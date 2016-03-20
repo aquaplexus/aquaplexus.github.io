@@ -47,7 +47,7 @@ linkOverlay:hover{
 linkOverlay2:hover{
   background-color:rgba(255,255,255,0.7);
   transition:300ms;
-  color:#444;
+  color:#555;
 }
 
 linkOverlay,linkOverlay a{
@@ -73,6 +73,7 @@ linkOverlay2,linkOverlay2 a{
   color:transparent;
   font-family:Khula,Trebuchet MS,sans-serif;
   text-align:center;
+  font-weight:bold;
 }
 
 h1{
