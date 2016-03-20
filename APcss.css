@@ -30,18 +30,24 @@ container{
   box-shadow:5px 5px 10px rgba(0,0,0,0.2); 
 }
 
-linkOverlay{
+linkOverlay,linkOverlay2{
   pointer-events:none;
   transition:300ms;
 }
 
-linkOverlay a{
+linkOverlay a,linkOverlay2 a{
   pointer-events:auto;
 }
 
 linkOverlay:hover{
   background-color:rgba(255,255,255,0.25);
   transition:300ms;
+}
+
+linkOverlay:hover{
+  background-color:rgba(255,255,255,0.7);
+  transition:300ms;
+  color:#444;
 }
 
 linkOverlay,linkOverlay a{
@@ -53,6 +59,19 @@ linkOverlay,linkOverlay a{
   height:100%;
   border-radius:10px;
   z-index:100;
+}
+
+linkOverlay2,linkOverlay2 a{
+  position:absolute;
+  display:block;
+  top:0%;
+  left:0%;
+  width:100%;
+  height:100%;
+  border-radius:10px;
+  z-index:100;
+  color:transparent;
+  font-family:Khula,Trebuchet MS,sans-serif;
 }
 
 h1{
