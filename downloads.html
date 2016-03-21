@@ -63,6 +63,7 @@
       document.getElementById("container").style.top=""+(headerHeight+60)+"px";
       document.getElementById("title").style.fontSize=""+headerHeight/3+"px";
       document.getElementById("title").style.top=""+(headerHeight/6+headerHeight/8)+"px";
+      document.getElementById("wrapper").style.zoom=""+(window.innerWidth/1350)+"";
     }
   </script>
   
@@ -106,8 +107,13 @@
     }
   </style>
   
+  <!--
   <body onload=startup() style="background-color:#D0FFAA">
-    <header id="header" style="background-color:#00D02C; border-bottom:5px solid #00a423">
+  <header id="header" style="background-color:#00D02C; border-bottom:5px solid #00a423">
+  -->
+  
+  <body onload=startup() style="background-color:#94caf9">
+    <header id="header" style="background-color:#488cc7; border-bottom:5px solid #24659d">
       <canvas id="canvas"></canvas>
       <pgTitle id="title"><tb>Aqua</tb>Plexus downloads</pgTitle>
       <logo>
@@ -128,6 +134,22 @@
           <p><li><a href="https://drive.google.com/uc?export=download&id=0BwYr3ULWuvbocGtpZXdaSE15STQ">Stimmets mekanik (.pdf, 1MB)</a>
           <br><li><a href="https://drive.google.com/folderview?id=0BwUDjgD-DI9kRHZHNkV2cFpFUms&usp=sharing" target="_blank">Infographics/images (Drive folder)</a>
           </p>
+      </div>
+      <div id="footer" style="display:block; position:relative; float:left; margin-left:-8px; bottom:0; width:100%; height:8vw; line-height:9vw; background-color:#488cc7; border-top:5px solid #24659d; text-align:center; font-family: Khula,Trebuchet MS,sans-serif; font-size: 3vw; color:white;">
+        <wrapper id="wrapper" style="display:block; position:absolute; width:100%; height:100%; overflow:hidden;">
+          <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" style="background-image:url(license.png); width:154px; height:70px; background-repeat:no-repeat; background-size:contain; position:absolute; display:block; top:20px; left:20px; z-index:1000;  pointer-events:auto"></a>
+          <ccinfo style="position:absolute; display:block; top:20px; left:190px; height:70px; width:250px; overflow:hidden; text-align: left; font-size:12px; line-height:15px; border-left:1px solid #ddd; padding-left:20px">
+            All material on this website is licensed under the Creative Commons CC BY-NC-SA license, unless indicated. You may edit, distribute and build upon this work, provided the guidelines specified by the license are followed exactly. 
+          </ccinfo>
+          <addlinks style="position:absolute; display:block; width:500px; height:30px; top:25px; left:660px; font-size:20px; line-height:30px; border-bottom:1px solid #ddd">
+            Contact/additional links
+          </addlinks>
+          <addlinksbottom style="position:absolute; display:block; width:500px; height:30px; top:60px; left:660px; font-size:20px; line-height:30px;">
+            aquaplexus16@gmail.com |
+            <a href="https://www.youtube.com/channel/UCPs89MgKurV7Te_TFnRxNbg" target="_blank" style="color:white; text-decoration:none; pointer-events:auto; z-index:1000"> YouTube |</a>
+            <a href="https://github.com/aquaplexus/aquaplexus.github.io" target="_blank" style="color:white; text-decoration:none; pointer-events:auto; z-index:1000"> Github</a>
+          </addlinksbottom>
+        </wrapper>
       </div>
     </container>
   </body>
