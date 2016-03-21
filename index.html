@@ -121,7 +121,13 @@
       <about id="about" style="display:block; position:relative; width:90%; min-height:100px; left:5%; background-color:#dff0ff; border-radius:10px; float:left; overflow:hidden; box-shadow: 5px 5px 10px rgba(0,0,0,0.2); margin-bottom:100px; text-align:center; font-family: Khula,Trebuchet MS,sans-serif; font-size: 1.2vw;">
         <inner style="position:relative; display:block; left:5%; width:90%; height:100%">
           <h1>This is a title!</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          AquaPlexus is a project by Mattias Ulmestrand and Andi Pärn, two students currently attending Hulebäcksgymnasiet near Gothenburg. The project started as a graduation project to which a Java program was written. The program is called AquaPlexus and is based on Craig Reynolds' Boids from 1986. Reynolds' program was extended to improve the accuracy of the simulation and adapt it to fish instead of birds. Below are some enhancement examples:
+          <br><br>
+          <ol>
+          <li>Hydrodynamics: As water is much more viscous than air, fish experience strong drag forces that affect how they move. A formula for water resistance is embedded in the code and it can be observed that fish slow down in a lively manner as they stop swimming and leave schools. </li>
+          <li>Spurting: Fish are known to make random spurts every now and then. The fish in the simulations will spurt at random about two times per second. This can be observed when lonely non-schooling fish suddenly make quick moves in random directions. This also happens in schools, but is much less noticeable.</li>
+          <li>Chaos: Schools of virtual fish are excellent to conduct experiments on. The program was extended with a system to record 300 fish's positions and speed in two dimensions. Running the program with the same starting settings (and without random spurts) yields the same result after a set number of frames every time. By changing the position of a single fish just a little bit the end result is rather different. The structure of the flock is drastically changed, all because of chaos.</li>
+          </ol>
         </inner>
       </about>
       <div id="footer" style="display:block; position:relative; float:left; margin-left:-8px; bottom:0; width:100%; height:8vw; line-height:9vw; background-color:#488cc7; border-top:5px solid #24659d; text-align:center; font-family: Khula,Trebuchet MS,sans-serif; font-size: 3vw; color:white;">
