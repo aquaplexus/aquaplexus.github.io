@@ -397,6 +397,13 @@
   
   
   <body id="body" style="background-color:#94caf9" onload=init()>
+    <homeload style="position:absolute; display:block; width:50px; height:100px;">
+      <home style="display:block; position:absolute; width:50px; height:50px; background-image:url(homeload.png); background-size:50px 100px; z-index:1000">
+        <a href="http://aquaplexus.net" title="AquaPlexus home" style="position:absolute; display:block; width:100%; height:100%;"></a></home>
+      <download style="display:block; position:absolute; top:50px; width:50px; height:50px; background-image:url(homeload.png); background-size:50px 100px; background-position:0 -50px; z-index:1000">
+        <a href="/downloads" title="Download source/Java app" style="position:absolute; display:block; width:100%; height:100%;"></a>
+      </download>
+    </homeload>
     <canvas id="backCanvas"></canvas>
     <gameBoard id="board">
       <canvas id="canvas" draggable="true" ondrag=select(event,1) onmousedown=select(event,0) style="cursor:default !important"></canvas>
