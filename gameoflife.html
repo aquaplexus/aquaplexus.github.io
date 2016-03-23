@@ -120,6 +120,7 @@
   var thread=setInterval(simulate,refreshRate);
   var fullRefresh,population=0,generation=0;
   var ballSpecs;
+  var fps=10;
   
   function init(){
     restart();
@@ -257,7 +258,7 @@
     document.getElementById("input").value=sideSq*2;
     document.getElementById("input2").value=sideSq;
     document.getElementById("input3").value=border;
-    document.getElementById("input4").value=1000/refreshRate;
+    document.getElementById("input4").value=fps;
   }
   
   function save(){
@@ -266,6 +267,7 @@
     if (document.getElementById("input4").value==0){
       refreshRate=1000;
     }else{
+      fps=document.getElementById("input4").value;
       refreshRate=1000/parseInt(document.getElementById("input4").value);
     }
     clearInterval(thread);
