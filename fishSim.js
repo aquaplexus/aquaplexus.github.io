@@ -108,7 +108,6 @@ function move(){
     paint();
   }
 }
-setInterval(move,50);
 
 function movePopulation(){
   var margin=30;
@@ -301,9 +300,11 @@ function paint(){
   } 
 }
 
-setTimeout(startupstuff,2000);
+setTimeout(startupstuff,5000);
 
 function startupstuff(){
   setFish();
   document.getElementById("song").play();
+  document.getElementById("overlay").style.display="none";
+  setInterval(move,50);
 }
