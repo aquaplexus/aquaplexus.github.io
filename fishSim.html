@@ -7,6 +7,11 @@
     <link rel="stylesheet" type="text/css" href="fishSim.css" media="screen"/>
     <script type="text/javascript" src="fishSim.js"></script>
     <audio loop preload="auto" id="song" src="https://www.dropbox.com/s/eqw7v8tjrkbja2v/soundtrack.wav?raw=1" type="audio/wav"></audio>
+    <style>
+      @keyframes load{
+        to{width:100%}
+      }
+    </style>
   </head>
   <body onload=resize()>
     <menuBar id="menu">
@@ -37,5 +42,11 @@
       <name style="position:fixed; bottom:2px; right:5px; color:#999; font-size:20px"><b>Aqua</b><l>Plexus<l></name>
     </a>
     <canvas id="fishCanvas" width="1000" height="500" onclick=playPause() onmousemove=mouseOver()></canvas>
+    <overlay id="overlay" style="display:block; position:fixed; top:0; left:0; width:100%; height:100%; background-color:#488CC7">
+      <logo style="display:block; position:fixed; background-image:url(https://www.dropbox.com/s/qhgdcmhagtmqrf3/AquaPlexusLogo.png?raw=1); top:50%; left:50%; margin-top:-100px; margin-left:-100px; width:200px; height:200px; background-size:contain;"></logo>
+      <loader style="display:block; position:fixed; width:100%; height:2vw; bottom:0; background-color:#91c1eb;"></loader>
+      <loader style="display:block; position:fixed; width:0%; height:2vw; bottom:0; background-color:#24659D; animation:load 5s linear 1"></loader>
+      <info style="display:block; position:fixed; width:100%; bottom:0.2vw; text-align:center; font-family:Trebuchet MS,sans-serif; font-size:1.4vw; color:#003b6e">Just making sure everything is loading properly!</info>
+    </overlay>
   </body>
 </html>
