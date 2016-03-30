@@ -7,9 +7,6 @@ var speedLim;
 var xPos,yPos;
 console.log("top kek");
 
-setFish();
-document.getElementById("song").play();
-
 function setFish(){
   fishPos=[];
   fishVel=[];
@@ -303,3 +300,7 @@ function paint(){
     ctx.arc(fishPos[i],fishPos[i+1],5,0,2*Math.PI);*/
   } 
 }
+
+
+setFish();
+document.getElementById("song").play();
