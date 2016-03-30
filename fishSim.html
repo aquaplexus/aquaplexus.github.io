@@ -1,0 +1,41 @@
+<!--
+   I've learned a lot since I started working on this program, so it's rather ugly as HTML syntax goes. Well, now that I have excused myself, I wish you many hours of fun with this little thing!
+-->
+
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="fishSim.css" media="screen"/>
+    <script src="fishSim.js"></script>
+    <audio loop preload="auto" id="song" src="soundtrack.wav" type="audio/wav"></audio>
+  </head>
+  <body onload=resize()>
+    <menuBar id="menu">
+      <b>Settings</b><l> and options</l>
+      <div id="sliderText" style="position:absolute; top:40px; left:10px;"><l>Fish:</l> 300</div>
+      <input id="slider" type="range" style="position:absolute; top:70px; left:10px; width:280px" min="10" max="500" value="300" oninput=refreshSlide()></input>
+      <inner id="inner">
+        <div style="position:relative;"><l>Cohesion:</l>
+          <input id="cohesion" value="2"></input>
+        </div>
+        <div style="position:relative;"><l>Adaption:</l>
+          <input id="adaption" value="4"></input>
+        </div>
+        <div style="position:relative;"><l>Repulsion:</l>
+          <input id="repulsion" value="1"></input>
+        </div>
+        <div style="position:relative;"><l>Drag limit:</l>
+          <input id="drag" value="1"></input>
+        </div>
+        <button type="button" onclick=restart()><b>Restart</b></button>
+        <a href="http://aquaplexus.net/" style="text-decoration:none">
+          <button type="button" style="margin-top:10px"><b>Home</b></button>
+        </a>
+      </inner>
+      <expando id="expando" onclick=exp() title="open settings">⟩</expando>
+    </menuBar>
+    <a href="http://aquaplexus.net/" style="text-decoration:none">
+      <name style="position:fixed; bottom:2px; right:5px; color:#999; font-size:20px"><b>Aqua</b><l>Plexus<l></name>
+    </a>
+    <canvas id="fishCanvas" width="1000" height="500" onclick=playPause() onmousemove=mouseOver()></canvas>
+  </body>
+</html>
