@@ -301,6 +301,9 @@ function paint(){
   } 
 }
 
+setTimeout(startupstuff,2000);
 
-setFish();
-document.getElementById("song").play();
+function startupstuff(){
+  setFish();
+  document.getElementById("song").play();
+}
