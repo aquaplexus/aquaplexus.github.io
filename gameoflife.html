@@ -121,6 +121,7 @@
   var fullRefresh,population=0,generation=0;
   var ballSpecs;
   var fps=10;
+  var mouseDown;
   
   function init(){
     restart();
@@ -204,6 +205,21 @@
     //alert(xPos+","+yPos+" : "+x2+","+y2);
     var selected=(y2+border)*(sideSq*2+border*2)+border+x2;
     //alert(selected);
+    if (id==0){mouseDown=1;}
+    if (id==0){
+      if (squares[selected]==0){
+        squares[selected]=1;
+        population++;
+      }else{
+        squares[selected]=0;
+        population--;
+      }
+    }else{
+      if (squares[selected]==0&&mouseDown==1){
+        squares[selected]=1;
+        population++;
+      }
+    }
     if (squares[selected]==0){
       squares[selected]=1;
       population++;
@@ -213,6 +229,10 @@
     }
     paint();
     refreshData();
+  }
+  
+  function resetMouse(){
+    mouseDown=0;
   }
   
   function playPause(){
@@ -408,7 +428,7 @@
     </homeload>
     <canvas id="backCanvas"></canvas>
     <gameBoard id="board">
-      <canvas id="canvas" draggable="true" ondrag=select(event,1) onmousedown=select(event,0) style="cursor:default !important"></canvas>
+      <canvas id="canvas" draggable="false" onmouseover=select(event,1) onmousedown=select(event,0) onmouseup=resetMouse() style="cursor:default !important"></canvas>
     </gameBoard>
     <settings id="settings">
       <div id="playBtn" onmousedown=playPause()>play</div>
