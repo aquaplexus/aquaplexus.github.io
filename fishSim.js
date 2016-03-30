@@ -76,15 +76,19 @@ function resize(){
 }
 
 function playPause(){
-  if (expanded==1){
+  if (xPos<=30&&yPos<=50){
     exp();
   }else{
-    if (playing==0){
-      playing=1;
-      document.getElementById("song").play();
+    if (expanded==1){
+      exp();
     }else{
-      playing=0;
-      document.getElementById("song").pause();
+      if (playing==0){
+        playing=1;
+        document.getElementById("song").play();
+      }else{
+        playing=0;
+        document.getElementById("song").pause();
+      }
     }
   }
 }
