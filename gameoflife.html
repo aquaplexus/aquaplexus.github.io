@@ -205,7 +205,6 @@
     //alert(xPos+","+yPos+" : "+x2+","+y2);
     var selected=(y2+border)*(sideSq*2+border*2)+border+x2;
     //alert(selected);
-    if (id==0){mouseDown=1;}
     if (id==0){
       if (squares[selected]==0){
         squares[selected]=1;
@@ -231,8 +230,8 @@
     refreshData();
   }
   
-  function resetMouse(){
-    mouseDown=0;
+  function setMouse(id){
+    mouseDown=id;
   }
   
   function playPause(){
@@ -418,7 +417,7 @@
   </script>
   
   
-  <body id="body" style="background-color:#94caf9" onload=init()>
+  <body id="body" style="background-color:#94caf9" onload=init() onmouseup=setMouse(1) onmouseup=setMouse(0)>
     <homeload style="position:absolute; display:block; width:50px; height:100px;">
       <home style="display:block; position:absolute; width:50px; height:50px; background-image:url(homeload.png); background-size:50px 100px; z-index:1000">
         <a href="http://aquaplexus.net" title="AquaPlexus home" style="position:absolute; display:block; width:100%; height:100%;"></a></home>
@@ -428,7 +427,7 @@
     </homeload>
     <canvas id="backCanvas"></canvas>
     <gameBoard id="board">
-      <canvas id="canvas" draggable="false" onmouseover=select(event,1) onmousedown=select(event,0) onmouseup=resetMouse() style="cursor:default !important"></canvas>
+      <canvas id="canvas" draggable="false" onmousemove=select(event,1) onmousedown=select(event,0) style="cursor:default !important"></canvas>
     </gameBoard>
     <settings id="settings">
       <div id="playBtn" onmousedown=playPause()>play</div>
