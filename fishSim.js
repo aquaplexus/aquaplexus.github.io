@@ -112,7 +112,7 @@ function move(){
 
 function movePopulation(){
   var margin=30;
-  //speedLim=1;
+  speedLim=document.getElementById("drag").value;
   
   for (n=0;n<fishNo*2;n+=2){
     fishPos[n]+=fishVel[n];
