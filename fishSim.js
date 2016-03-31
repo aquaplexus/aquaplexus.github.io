@@ -76,9 +76,7 @@ function resize(){
 }
 
 function playPause(){
-  if (event.clientX<=30&&event.clientY<=50){
-    exp();
-  }else{
+  if (event.clientX>30&&event.clientY>50){
     if (expanded==1){
       exp();
     }else{
