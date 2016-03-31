@@ -64,7 +64,7 @@ window.onresize = function(event) {
 function mouseOver(){
   xPos=event.clientX;
   yPos=event.clientY;
-  if (expanded==1&&xPos<300){xPos=-100;}
+  if (expanded==1&&xPos<330){xPos=-100;}
 }
 
 function resize(){
