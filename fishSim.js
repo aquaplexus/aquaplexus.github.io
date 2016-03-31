@@ -79,6 +79,7 @@ function playPause(){
   if (event.clientX>30||event.clientY>50){
     if (expanded==1){
       if (event.clientX>330){exp();}
+      if (event.clientX>300event.clientX<=330){Math.abs(playing-1)}
     }else{
       if (playing==0){
         playing=1;
