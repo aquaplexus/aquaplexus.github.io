@@ -85,6 +85,11 @@ canvas{
   z-index:-10;
 }
 
+#toggle:hover{
+  opacity:1;
+  transition:200ms;
+}
+
 l{
   font-family:Roboto;
   font-weight:100;
