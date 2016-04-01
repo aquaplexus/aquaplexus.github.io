@@ -34,7 +34,7 @@ function restart(){
   fishNo=fishNoTmp;
   playing=1;
   document.getElementById("song").currentTime=0;
-  document.getElementById("song").play();
+  if (forcePlay==1){document.getElementById("song").play();}
   setFish();
 }
 
@@ -81,7 +81,7 @@ function resize(){
 
 function playPause(){
   if (event.clientX>30||event.clientY>50){
-    if (event.clientX>50||event.clientY<window.innerHeight-50){
+    if (event.clientX>50&&expanded==0||event.clientY<window.innerHeight-50&&expanded==0){
       if (expanded==1){
         if (event.clientX>330){exp();}
       }else{
@@ -100,6 +100,7 @@ function playPause(){
 function toggle(){
   forcePlay=Math.abs(forcePlay-1);
   if (forcePlay==0){document.getElementById("song").pause();}
+  if (forcePlay==1&&playing==1){document.getElementById("song").play();}
   localStorage.setItem("force",forcePlay);
   document.getElementById("toggle").style.backgroundPosition=""+(Math.abs(forcePlay-1)*-50)+"px 0";
 }
@@ -320,7 +321,7 @@ setTimeout(startupstuff,5000);
 
 function startupstuff(){
   setFish();
-  document.getElementById("song").play();
+  if (forcePlay==1){document.getElementById("song").play();}
   document.getElementById("overlay").style.display="none";
   document.getElementById("toggle").style.backgroundPosition=""+(Math.abs(forcePlay-1)*-50)+"px 0";
   setInterval(move,50);
