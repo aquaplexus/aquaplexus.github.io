@@ -1,0 +1,124 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:900,500,100);
+
+body{
+  background-color:#111;
+  font-family:Roboto,Arial,sans-serif;
+}
+
+main{
+  position:fixed;
+  display:block;
+  background-color:#222;
+  /*Just to make it look pretty before the JS sets in*/
+  height:100%;
+  width:100%;
+}
+
+#fractarea,#fractoverlay{
+  position:absolute;
+  display:block;
+  right:2.25%;
+  top:4%;
+  height:92%;
+  width:51.75%;
+  background-color:#ccc;
+  cursor:default;
+}
+
+#fractoverlay{
+  background-color:transparent;
+}
+
+#editarea{
+  position:absolute;
+  display:block;
+  left:2.25%;
+  top:4%;
+  width:41.5%;
+  height:36.888%;
+  background-color:#ccc;
+}
+
+#info{
+  position:absolute;
+  display:block;
+  left:46.5%;
+  bottom:4.5%;
+  font-size:35%;
+}
+
+settings{
+  position:absolute;
+  display:block;
+  top:44.88%;
+  left:2.25%;
+  width:41.5%;
+  height:51.12%;
+  /*background-color:#333;*/
+  text-align:center;
+  font-weight:100;
+  color:#ccc;
+  font-size:40%;
+}
+
+#desc,#desc2,#desc3{
+  position:relative;
+  display:block;
+  width:50%;
+  float:left;
+  margin-bottom:1%;
+}
+
+#desc2,#desc3{
+  width:100%;
+  font-size:120%;
+}
+
+input,#btn{
+  position:relative;
+  display:block;
+  font-weight:bold;
+  background-color:#666;
+  text-align:center;
+  color:#ddd;
+  border:none;
+  font-size:150%;
+  padding-top:1%;
+  margin-bottom:4%;
+}
+
+#btn{
+  margin-top:4%;
+  width:45%;
+  padding-bottom:1%;
+  font-size:150%;
+  float:left;
+  cursor:pointer;
+}
+
+#btn:hover{
+  background-color:#ddd;
+  color:#666;
+}
+
+#xOff,#yOff{
+  width:45%;
+  height:10%;
+  float:left;
+}
+
+#sides,#steps{
+  left:2.5%;
+  width:95%;
+  height:10%;
+  background-color:red;
+}
+
+::selection{
+  background-color:transparent;
+}
+
+input::selection{
+  background-color:#ddd;
+  color:#333;
+}
