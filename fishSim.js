@@ -6,6 +6,10 @@ var fishNo=300,fishNoTmp=300;
 var speedLim;
 var xPos,yPos;
 console.log("top kek");
+var forcePlay=1;
+if (localStorage.getItem("force")!=null){
+  forcePlay=localStorage.getItem("force");
+}
 
 function setFish(){
   fishPos=[];
@@ -89,6 +93,11 @@ function playPause(){
       }
     }
   }
+}
+
+function toggle(){
+  forcePlay=Math.abs(forcePlay-1);
+  document.getElementById("toggle").style.backgroundPosition=""+(Math.abs(forcePlay-1)*-50)+"px 0";
 }
 
 function move(){
@@ -309,5 +318,6 @@ function startupstuff(){
   setFish();
   document.getElementById("song").play();
   document.getElementById("overlay").style.display="none";
+  document.getElementById("toggle").style.backgroundPosition=""+(Math.abs(forcePlay-1)*-50)+"px 0";
   setInterval(move,50);
 }
