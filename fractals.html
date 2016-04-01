@@ -1,0 +1,236 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="fractals.css" media="screen">
+    <script>
+      var sideNo=3,stepNo=0,calcSides,radius=500,sqSide=1500,zoom=1,xOff=0,yOff=0;  //for polygon
+      var xPoint=600,yPoint=346  //for edit area
+      var width;
+      var clearAndPaint=1,pressed,mouseDown;
+      var sides=[],corners=[0,0,0,0];
+      var polygons=["triangle","square","pentagon","hexagon","heptagon","octagon","nonagon","decagon"];
+      
+      window.onresize = function(event) {
+        setSize();
+      };
+      
+      createPoly();
+      setSize();
+      
+      function setSize(){
+        if (window.innerWidth/window.innerHeight<16/9){
+          document.getElementById("main").style="width:"+window.innerWidth+"px; height:"+9*window.innerWidth/16+"px; left:0; top:"+(window.innerHeight-9*window.innerWidth/16)/2+"px";
+          width=window.innerWidth;
+        }else{
+          document.getElementById("main").style="width:"+16*window.innerHeight/9+"px; height:"+window.innerHeight+"px; left:"+(window.innerWidth-16*window.innerHeight/9)/2+"px; top:0";
+          width=16*window.innerHeight/9;
+        }
+        paint();
+        document.getElementById("body").style.fontSize=""+10*(width/240)+"px";
+      }
+      
+      function setUpDown(e,id){
+        if (e.which==3){
+          alert("right!");
+        }
+        mouseDown=id;
+        if (id==1){setStyle(e);}
+      }
+      
+      function resetStuff(){
+        pressed=0;
+        mouseDown=0;
+        paintOverlay();
+      }
+      
+      function editSides(){
+        if (document.getElementById("sides").value!=sideNo){
+          sideNo=document.getElementById("sides").value;
+          document.getElementById("desc2").innerHTML="Sides - "+sideNo+"";
+          createPoly();
+        }
+      }
+      
+      function editSteps(){
+        if (document.getElementById("steps").value!=stepNo){
+          stepNo=document.getElementById("steps").value;
+          document.getElementById("desc3").innerHTML="Iteration steps - "+stepNo+"";
+          createPoly();
+        }
+      }
+      
+      function setX(){
+        xPoint=600+document.getElementById("xOff").value*200;
+        createPoly();
+      }
+      
+      function setY(){
+        yPoint=document.getElementById("yOff").value*200;
+        createPoly();
+      }
+      
+      function save(){
+        var c=document.getElementById("fractarea");
+        var d=c.toDataURL("image/png");
+        var w=window.open('about:blank','image from canvas');
+        w.document.write("<img src='"+d+"' alt='from canvas'/>");
+      }
+      
+      function resetZoom(){
+        zoom=1;
+        xOff=0;
+        yOff=0;
+        createPoly();
+      }
+      
+      function setStyle(e){
+        if (mouseDown==1){
+          var scale=1500/(0.415*width);
+          var xPos=scale*(e.clientX-(window.innerWidth-width)/2-0.0225*width)-150;
+          var yPos=600-scale*(e.clientY-(window.innerHeight-9*width/16)/2-0.04*(9*width/16));
+          //alert(xPos+","+yPos);
+          xPoint=xPos;
+          yPoint=yPos;
+          createPoly();
+          document.getElementById("editarea").style.cursor="default";
+          document.getElementById("xOff").value=""+Math.floor(1000*(xPoint-600)/200)/1000+"";
+          document.getElementById("yOff").value=""+Math.floor(1000*yPoint/200)/1000+"";
+          pressed=0;
+        }
+      }
+      
+      function createPoly(){
+        sides=[];
+        var offset=Math.PI/sideNo;
+        for (i=0;i<=sideNo;i++){
+          var angle=i*(Math.PI*2)/sideNo;
+          sides.push(sqSide/2+Math.cos(angle+offset)*radius,sqSide/2+Math.sin(angle+offset)*radius);
+        }
+        addFraction();
+      }
+      
+      function addFraction(){
+        var percent=Math.hypot(xPoint,yPoint)/400;
+        var angle=Math.asin(yPoint/(percent*400));
+        for (steps=0;steps<stepNo;steps++){
+          for (i=0;i<sideNo*Math.pow(4,steps);i++){
+            var innerAngle=Math.atan((sides[i*8+3]-sides[i*8+1])/(sides[i*8+2]-sides[i*8]));
+            if (sides[i*8+2]-sides[i*8]<0){innerAngle+=Math.PI;}
+            var compLength=Math.hypot((sides[i*8+3]-sides[i*8+1]),(sides[i*8+2]-sides[i*8]));
+           sides.splice(2+8*i,0,sides[i*8]+Math.cos(innerAngle)*compLength/3,sides[i*8+1]+Math.sin(innerAngle)*compLength/3,sides[i*8]+Math.cos(innerAngle-angle)*compLength*percent/3,sides[i*8+1]+Math.sin(innerAngle-angle)*compLength*percent/3,sides[i*8]+2*Math.cos(innerAngle)*compLength/3,sides[i*8+1]+2*Math.sin(innerAngle)*compLength/3);
+          }
+        }
+        paint();
+      }
+      
+      function setRect(e,id){  //check if cursor is within area of fractarea.
+        var xOffset=(window.innerWidth-width)/2+width*0.46;
+        var yOffset=(window.innerHeight-9*width/16)/2+0.04*(9*width/16);
+        var sqSize=width*0.5175;
+        if (id==1){
+          corners[0]=(e.clientX-xOffset)*1500/sqSize;
+          corners[1]=(e.clientY-yOffset)*1500/sqSize;
+          corners[2]=corners[0];
+          corners[3]=corners[1];
+          pressed=1;
+        }else if(id==2){
+          var radSide=Math.sqrt(Math.pow(Math.hypot(corners[0]-(e.clientX-xOffset)*1500/sqSize,corners[1]-(e.clientY-yOffset)*1500/sqSize),2)/2);
+          /*corners[2]=(e.clientX-xOffset)*1500/sqSize;
+            corners[3]=(e.clientY-yOffset)*1500/sqSize;*/
+          corners[2]=corners[0]+radSide;
+          corners[3]=corners[1]+radSide;
+        }else{
+          pressed=0;
+          xOff*=zoom;
+          yOff*=zoom;
+          //alert(xOff+","+yOff);
+          xOff-=corners[0]*zoom;
+          yOff-=corners[1]*zoom;
+          zoom*=((corners[2]-corners[0])/1500);
+          xOff/=zoom;
+          yOff/=zoom;
+          createPoly();
+        }
+        //if (e.clientX>=xOffset&&e.clientX<=xOffset+sqSize&&e.clientY>=yOffset&&e.clientY<=yOffset+sqSize){}
+        paintOverlay();
+      }
+      
+      function paint(){
+        var ctx=document.getElementById("fractarea").getContext("2d");
+        ctx.clearRect(0,0,1500,1500);
+        ctx.strokeStyle="#222";
+        ctx.fillStyle="#999";
+        ctx.lineWidth=5; 
+        ctx.beginPath();
+        /*if (zoom==1){ctx.moveTo(sides[0],sides[1]);}
+        else{*/
+        console.log(-corners[0]/zoom+","+xOff);
+        ctx.moveTo(xOff+sides[0]/zoom,yOff+sides[1]/zoom)
+        for (i=2;i<sides.length;i+=2){
+          ctx.lineTo(xOff+sides[i]/zoom,yOff+sides[i+1]/zoom);
+        }
+        ctx.fill();
+        ctx.stroke();
+        
+        ctx=document.getElementById("editarea").getContext("2d");
+        ctx.clearRect(0,0,1500,750);
+        ctx.strokeStyle="#999";
+        ctx.beginPath();
+        ctx.moveTo(550,600);
+        ctx.lineTo(950,600);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(750,0);
+        ctx.lineTo(750,750);
+        ctx.stroke();
+        ctx.strokeStyle="#222";
+        ctx.beginPath();
+        ctx.lineWidth=10;
+        ctx.moveTo(150,600);
+        ctx.lineTo(550,600);
+        ctx.lineTo(150+xPoint,600-yPoint);
+        ctx.lineTo(950,600);
+        ctx.lineTo(1350,600);
+        ctx.stroke();
+        if (zoom==1){
+          document.getElementById("info").innerHTML="Origin: "+polygons[sideNo-3]+" | Sides: "+sideNo*Math.pow(4,stepNo)+"";
+        }else{
+          document.getElementById("info").innerHTML="Origin: "+polygons[sideNo-3]+" | Sides: "+sideNo*Math.pow(4,stepNo)+" | Scale: "+Math.floor(zoom*1000)/1000+"";
+        }
+      }
+      
+      function paintOverlay(){
+        var ctx=document.getElementById("fractoverlay").getContext("2d");
+        ctx.clearRect(0,0,1500,1500);
+        if (pressed==1){
+          ctx.fillStyle="rgba(0,0,0,0.5)";
+          ctx.strokeStyle="rgba(0,0,0,0.8)";
+          ctx.lineWidth=10;
+          ctx.beginPath();
+          ctx.rect(corners[0],corners[1],corners[2]-corners[0],corners[3]-corners[1]);
+          ctx.fill();
+          ctx.stroke();
+        }
+      }
+    </script>
+  </head>
+  <body id="body" onmouseup=resetStuff()>
+    <main id="main">
+      <canvas id="fractarea" width="1500" height="1500"></canvas>
+      <canvas id="fractoverlay" width="1500" height="1500" onmousedown=setRect(event,1) onmousemove=setRect(event,2) onmouseup=setRect(event,0)></canvas>
+      <div draggable="false" id="info">Polygon: triangle | Sides: 3</div>
+      <canvas id="editarea" width="1500" height="750" onmousedown=setUpDown(event,1) onmousemove=setStyle(event) onmouseup=setUpDown(event,0)></canvas>
+      <settings>
+        <div id="desc">X-offset</div>
+        <div id="desc">Y-offset</div>
+        <input id="xOff" style="margin-left:2.5%; margin-right:5%" value="0" onkeyup=setX()></input>
+        <input id="yOff" value="1.73" onkeyup=setY()></input>
+        <div id="desc2">Sides - 3</div>
+        <input type="range" id="sides" min="3" max="10" value="3" oninput=editSides()></input>
+        <div id="desc3">Iteration steps - 0</div>
+        <input type="range" id="steps" min="0" max="7" value="0" oninput=editSteps()></input>
+        <div id="btn" style="margin-left:2.5%; margin-right:5%" onclick=resetZoom()>Reset zoom</div>
+        <div id="btn" onclick=save()>Save as PNG</div>
+      </settings>
+    </main>
+  </body>
+</html>
