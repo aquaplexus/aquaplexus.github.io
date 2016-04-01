@@ -213,7 +213,7 @@
       }
     </script>
   </head>
-  <body id="body" onmouseup=resetStuff()>
+  <body id="body" onmouseup=resetStuff() onload=setSize()>
     <main id="main">
       <canvas id="fractarea" width="1500" height="1500"></canvas>
       <canvas id="fractoverlay" width="1500" height="1500" onmousedown=setRect(event,1) onmousemove=setRect(event,2) onmouseup=setRect(event,0)></canvas>
