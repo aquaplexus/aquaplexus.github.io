@@ -81,15 +81,17 @@ function resize(){
 
 function playPause(){
   if (event.clientX>30||event.clientY>50){
-    if (expanded==1){
-      if (event.clientX>330){exp();}
-    }else{
-      if (playing==0){
-        playing=1;
-        document.getElementById("song").play();
+    if (event.clientX>50||event.clientY<window.innerHeight-50){
+      if (expanded==1){
+        if (event.clientX>330){exp();}
       }else{
-        playing=0;
-        document.getElementById("song").pause();
+        if (playing==0){
+          playing=1;
+          if (forcePlay==1){document.getElementById("song").play();}
+        }else{
+          playing=0;
+          document.getElementById("song").pause();
+        }
       }
     }
   }
@@ -97,6 +99,8 @@ function playPause(){
 
 function toggle(){
   forcePlay=Math.abs(forcePlay-1);
+  if (forcePlay==0){document.getElementById("song").pause();}
+  localStorage.setItem("force",forcePlay);
   document.getElementById("toggle").style.backgroundPosition=""+(Math.abs(forcePlay-1)*-50)+"px 0";
 }
 
