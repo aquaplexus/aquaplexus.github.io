@@ -1,0 +1,247 @@
+<html>
+  <head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,700' rel='stylesheet' type='text/css'>
+    <style>
+      body{
+        background-color:black;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      #canvas{
+        cursor:crosshair;
+        display:block;
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+      }
+      #info,#settings{
+        display:block;
+        position:fixed;
+        top:50px;
+        left:10px;
+        width:30px;
+        height:30px;
+        border-radius:15px;
+        background-color:white;
+        font-family:Trebuchet MS,sans-serif;
+        font-size:40px;
+        font-weight:bold;
+        text-align:center;
+        overflow:hidden;
+        opacity:0.2;
+        transition:opacity 150ms;
+        cursor:pointer;
+        z-index:100;
+      }
+      settings{
+        display:none;
+        position:fixed;
+        top:25px;
+        left:50px;
+        width:300px;
+        height:280px;
+        background-color:#eee;
+        color:#333;
+        font-family:Roboto,Arial,sans-serif;
+        font-size:20px;
+        text-align:center;
+        transition:500ms;
+        opacity:0;
+      }
+      #nub{
+        position:absolute;
+        margin-left:-60px;
+        width:0;
+        height:0;
+        border-right:30px solid #eee;
+        border-left:30px solid transparent;
+        border-bottom:30px solid transparent;
+      }
+      inner{
+        display:block;
+        position:absolute;
+        width:90%;
+        height:100%;
+        top:0;
+        left:5%;
+      }
+      input{
+        height:30px;
+        width:50px;
+        color:#333;
+        font-family:Roboto,Arial,sans-serif;
+        font-weight:bold;
+        font-size:20px;
+        border:none;
+        background-color:transparent;
+      }
+      sm{
+        display:block;
+        font-size:14px;
+      }
+      #check{
+        height:15px;
+        width:15px;
+        cursor:pointer;
+      }
+      #settings{
+        top:10px;
+        line-height:23px;
+      }
+    </style>
+    <script>
+      var xPos=[],yPos=[],stps=[],fireCols=[],checks=[0,0,0,0],showCursor=1,points=10,sinusoid=0.1,dissipate=0.3,dragging,expanded=0;
+      var ids=["info","settings"];
+      var pointFld=[],sine=[],stepNo=[],fade,size=25;
+      
+      window.onresize = function(event) {
+        resize();
+      };
+      
+      //I'm just avoiding to use CSS in this one...
+      function enter(id){
+        document.getElementById(ids[id]).style.opacity="1";
+        document.getElementById("setup").style.display="block";
+      }
+      function leave(id){
+        document.getElementById(ids[id]).style.opacity="0.2";
+        if (expanded==0){document.getElementById("setup").style.display="none";}
+      }
+      
+      function expand(){
+        if (expanded==0){
+          document.getElementById("setup").style.left="80px";
+          document.getElementById("setup").style.opacity="1";
+          expanded=1;
+        }else{
+          collapse();
+        }
+      }
+      
+      function collapse(){
+        document.getElementById("setup").style.left="50px";
+        document.getElementById("setup").style.opacity="0";
+        expanded=0;
+      }
+      
+      function hide(){
+        document.getElementById("setup").style.display="none";
+      }
+      
+      function change(id){
+        if (id==0){
+          points=document.getElementById("points").value;
+        }else if (id==1){
+          checks[0]=Math.abs(checks[0]-1);
+        }else if (id==2){
+          sinusoid=document.getElementById("sine").value;
+        }else if (id==3){
+          checks[1]=Math.abs(checks[1]-1);
+        }else if (id==4){
+          dissipate=document.getElementById("fade").value;
+          if (dissipate<0.15){dissipate=0.15;}
+          if (dissipate>1){dissipate=1;}
+        }else if (id==5){
+          checks[2]=Math.abs(checks[2]-1);
+        }else if (id==6){
+          if (showCursor==1){
+            document.getElementById("canvas").style.cursor="none";
+            showCursor=0;
+          }else{
+            document.getElementById("canvas").style.cursor="crosshair";
+            showCursor=1;
+          }
+        }else if (id==7){
+          size=document.getElementById("size").value;
+        }else{
+          checks[3]=Math.abs(checks[3]-1);
+        }
+      }
+      
+      function resize(){
+        document.getElementById("canvas").width=window.innerWidth;
+        document.getElementById("canvas").height=window.innerHeight;
+        paint();
+      }
+      
+      function toggleDrag(id){
+        dragging=id;
+        setPos();
+      }
+      
+      function setPos(){
+        if (dragging==1){
+          xPos.push(event.clientX);
+          yPos.push(event.clientY);
+          var tmpSize;
+          if (checks[3]==0){tmpSize=size;}
+          else{tmpSize=Math.random()*size*0.5+0.5*size;}
+          stepNo.push(tmpSize);
+          stps.push(tmpSize);
+          if (checks[0]==0){pointFld.push(points);}
+          else{pointFld.push(Math.floor(Math.random()*(points+1)+1));}
+          if (checks[1]==0){sine.push(sinusoid);}
+          else{sine.push(Math.random()*sinusoid);}
+          if (checks[2]==0){fade=dissipate;}
+          else{fade=Math.random()*dissipate*0.85+0.15;}
+          fireCols.push(Math.floor(Math.random()*155+100),Math.floor(Math.random()*155+100),Math.floor(Math.random()*155+100));
+          if (expanded==1){
+            collapse();
+            setTimeout(hide,500);
+          }
+        }
+      }
+      
+      function paint(){
+        var ctx=document.getElementById("canvas").getContext("2d");
+        ctx.fillStyle="rgba(0,0,0,"+fade+")";
+        ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
+        /*for (i=0;i<firePos.length/2;i++){
+          ctx.fillStyle="rgb("+fireCols[i*3]+","+fireCols[i*3+1]+","+fireCols[i*3+2]+")";
+          ctx.fillRect(firePos[i*2]-5,firePos[i*2+1]-5,10,10);
+        }*/
+        for (i=0;i<xPos.length;i++){
+          var rot=i%(360/points)*Math.PI/18;
+          if (stps[i]>0){
+            ctx.fillStyle="rgb("+fireCols[i*3]+","+fireCols[i*3+1]+","+fireCols[i*3+2]+")";
+            for (n=0;n<pointFld[i];n++){
+              ctx.beginPath();
+              ctx.arc(xPos[i]+Math.cos(n*2*Math.PI/pointFld[i]+rot+sine[i]*Math.sin(Math.pow((stepNo[i]-stps[i])+1.45,3)/100)*(-1/stepNo[i]*(stepNo[i]-stps[i])+1))*(stepNo[i]-stps[i])*5,yPos[i]+Math.sin(n*2*Math.PI/pointFld[i]+rot+sine[i]*Math.sin(Math.pow((stepNo[i]-stps[i])+1.45,3)/100)*(-1/stepNo[i]*(stepNo[i]-stps[i])+1))*(stepNo[i]-stps[i])*5,stps[i],0,2*Math.PI);
+              ctx.fill();
+            }
+            stps[i]--;
+          }
+        }
+      }
+      
+      setInterval(paint,20);
+    </script>
+  </head>
+  <body onload=resize()>
+    <canvas id="canvas" onmousedown=toggleDrag(1) onmousemove=setPos()
+    onmouseup=toggleDrag(0)></canvas>
+    <div id="settings" onmouseover=enter(1) onclick=expand() onmouseleave=leave(1)>s</div>
+    <settings id="setup">
+      <div id="nub"></div>
+      <inner>
+        <p><b>Firework settings</b>
+        <br><sm>Hover for info</sm><p>
+        <p>Size: <input value="25" id="size" onkeyup=change(7) title="Defines the size of each firework."></input> <input type="checkbox" id="check" onchange=change(8) title="Random size for each firework. Input number is maximum."></input>Random
+        <br>
+        Points: <input value="10" id="points" onkeyup=change(0) title="Defines how many points each firework has."></input> <input type="checkbox" id="check" onchange=change(1) title="Random number of points for each firework. Input number is maximum."></input>Random
+        <br>
+        Sine: <input value="0.1" id="sine" onkeyup=change(2) title="Defines how much the fireworks wiggle."></input> <input type="checkbox" id="check" onchange=change(3) title="Random wiggle. Input number is maximum."></input>Random
+        <br>
+        Fade: <input value="0.3" id="fade" onkeyup=change(4) title="Defines how quickly the fireworks dissipate."></input> <input type="checkbox" id="check" onchange=change(5) title="Random dissipating speed"></input>Random
+        <br>
+        <br>
+        <input type="checkbox" id="check" onchange=change(6)></input>Hide cursor
+        </p>
+      </inner
+    </settings>
+    <!--<div id="info" onmouseover=enter(0) onmouseleave=leave(0)>i</div>-->
+  </body>
+</html>
