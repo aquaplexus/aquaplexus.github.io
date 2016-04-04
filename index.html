@@ -9,11 +9,6 @@
     <link rel="stylesheet" type="text/css" href="APcss.css" media="screen" />
     <link rel="icon" href="icon.png">
   </head>
-  <style>
-    #li{
-      font-weight:bold;
-    }
-  </style>
   <script>
     var headerHeight;
     var ballSpecs;
@@ -132,9 +127,9 @@
           <h1>About AquaPlexus</h1>
           AquaPlexus is a project by Mattias Ulmestrand and Andi Pärn, two students currently attending Hulebäcksgymnasiet near Gothenburg. The project started as a graduation project to which a Java program was written. The program is called AquaPlexus and is based on Craig Reynolds' Boids from 1986. Reynolds' program was extended to improve the accuracy of the simulation and adapt it to fish instead of birds. Below are some enhancement examples:<br><br>
           <ol>
-          <b><li>Hydrodynamics:</b> As water is much more viscous than air, fish experience strong drag forces that affect how they move. A formula for water resistance is embedded in the code and it can be observed that fish slow down in a lively manner as they stop swimming and leave schools.</li>
-          <b><li>Spurting:</b> Fish are known to make random gushes of speed every now and then. The fish in the simulation will spurt at random about two times per second, although they tend to do so less whilst alone. This can be observed when lonely non-schooling fish suddenly make quick moves in random directions.</li>
-          <b><li>Chaos:</b> Schools of virtual fish are excellent specimens to conduct experiments on. The program was extended with a system to record 300 fish's positions and speed in two dimensions. Running the program with the same starting settings (and without random spurts) yields the same result after a set number of frames every time. By changing the position of a single fish just a little bit the end result is rather different. The structure of the flock is drastically changed, all because of chaos. Infographics about this can be found at the end of the scientific paper.</li>
+          <li><b>Hydrodynamics:</b> As water is much more viscous than air, fish experience strong drag forces that affect how they move. A formula for water resistance is embedded in the code and it can be observed that fish slow down in a lively manner as they stop swimming and leave schools.</li>
+          <li><b></b>Spurting:</b> Fish are known to make random gushes of speed every now and then. The fish in the simulation will spurt at random about two times per second, although they tend to do so less whilst alone. This can be observed when lonely non-schooling fish suddenly make quick moves in random directions.</li>
+          <li><b></b>Chaos:</b> Schools of virtual fish are excellent specimens to conduct experiments on. The program was extended with a system to record 300 fish's positions and speed in two dimensions. Running the program with the same starting settings (and without random spurts) yields the same result after a set number of frames every time. By changing the position of a single fish just a little bit the end result is rather different. The structure of the flock is drastically changed, all because of chaos. Infographics about this can be found at the end of the scientific paper.</li>
           </ol>
           <br>
           <b>Game of Life</b> is another simulation available on this site. One might wonder what this has to do with fish simulations. Well, Game of Life can be classed in the same category as AquaPlexus because they're both simulations based on simple rules. Game of life consists of a board filled with squares, or cells as they’re called, that can either be dead or alive, with their colours dependent on each case. Each cell has eight adjacent cells, and the alive ones in their proximity are called neighbours. If a cell has fewer than two or more than three neighbours they die of under-popualion or over-population respectively, or else they simply live on to the next generation. If a dead cell has exactly three neighbours, it springs to life, as if by birth. These rules, however trivial they may be, give rise to highly complex and unpredictable patterns. The same is true in AquaPlexus.
