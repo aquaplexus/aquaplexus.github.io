@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!--Design, images and code by Andi Pärn-->
+<!--Design, images and code by Andi Pärn. If it's not obvious enough, this is my first website. Lots of weird stuff awaits thee in the depths of this document.-->
 
 <html>
   <head>
@@ -52,6 +52,7 @@
     setInterval(paint,75);
     
     function resize(){
+      //Me four months after last commit: WHYYY!??!
       headerHeight=window.innerHeight/2;
       if (headerHeight>150){headerHeight=150;}
       document.getElementById("canvas").height=headerHeight;
@@ -84,7 +85,7 @@
         <a id="logo" href="http://aquaplexus.net" title="AquaPlexus home"></a>
       </logo>
     </header>
-    <container id="container">
+    <div id="container">
       <toabout style="position:absolute; display:block; width:100px; height:40px; border-radius: 10px 10px 0 0; background-color:#488cc7; transform:rotate(90deg); text-align:center; margin-left:-30px; font-family:Khula,Trebuchet MS,sans-serif; font-size:20px; line-height:44px; margin-top:40px;" id="toabout">
         <a href="#about" title="Jump to about" style="display:block; position:absolute; width:100%; height:100%; color:white; text-decoration:none; pointer-events:auto;">About</a>
       </toabout>
@@ -140,7 +141,7 @@
         <wrapper id="wrapper" style="display:block; position:absolute; width:100%; height:100%; overflow:hidden;">
           <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" style="background-image:url(license.png); width:154px; height:70px; background-repeat:no-repeat; background-size:contain; position:absolute; display:block; top:20px; left:20px; z-index:1000;  pointer-events:auto"></a>
           <ccinfo style="position:absolute; display:block; top:20px; left:190px; height:70px; width:250px; overflow:hidden; text-align: left; font-size:12px; line-height:15px; border-left:1px solid #ddd; padding-left:20px">
-            All material on this website is licensed under the Creative Commons CC BY-NC-SA license, unless indicated. You may edit, distribute and build upon this work, provided the guidelines specified by the license are followed exactly. 
+            All material on this website is licensed under the Creative Commons CC BY-NC-SA license, unless indicated. You may edit, distribute and build upon this work, provided the guidelines specified by the license are followed. 
           </ccinfo>
           <addlinks style="position:absolute; display:block; width:500px; height:30px; top:25px; left:660px; font-size:20px; line-height:30px; border-bottom:1px solid #ddd">
             Contact/additional links
@@ -152,6 +153,6 @@
           </addlinksbottom>
         </wrapper>
       </div>
-    </container>
+    </div>
   </body>
 </html>
